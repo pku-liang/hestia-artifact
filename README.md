@@ -4,7 +4,7 @@ This repository contains the evaluation materials for our MICRO 2024 paper entit
 
 # Setup
 
-## Install [Rust][rust]
+## Install Rust
 
 ```bash
 curl https://sh.rustup.rs -sSf | sh
