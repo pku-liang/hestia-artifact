@@ -67,3 +67,11 @@ Use the python script to run the evaluation and to generate three csv files. (Ta
 python3 data.py
 ```
 
+# Generate figure
+
+```bash
+python3 figure.py
+```
+
+The generated figure ``figure.png`` looks like this:
+![](./figure.png)
