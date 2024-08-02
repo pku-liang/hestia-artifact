@@ -55,7 +55,7 @@ fud config stages.interpreter.flags " --no-verify " # the spaces are important
 
 # Evaluation data
 
-Set the path of Hestia in ``data.py``
+Set the path of Hestia in `data.py`
 
 ```python
 debugger = "~/hector-debugger/target/release/hector-debugger "
@@ -73,5 +73,45 @@ python3 data.py
 python3 figure.py
 ```
 
-The generated figure ``figure.png`` looks like this:
+The generated figure `figure.png` looks like this:
 ![](./figure.png)
+
+# Interactive debugging with Hestia
+
+## Case 1: (IAP in Section VII-C)
+
+The work directory is `examples/case1`. First, invoke the software-level simulation:
+
+```bash
+hestia command.tcl
+```
+
+Run the simulation and inspect the result. You will find that the result differs from `data/D_out.txt`
+
+```tcl
+continue
+mem op_3
+exit
+```
+
+Re-run the simulation script `command.tcl` and debug through the breakpoint. 
+
+```tcl
+breakpoint op_116
+continue
+var op_115
+```
+
+ Unset the breakpoint and inspect address index through watchpoints at two loop variables and the address index. The erroneous address is finally exposed. (`show_op` prints the current operation at the software level)
+
+```tcl
+unset_breakpoint op_116
+show_breakpoint
+watch op_135_b
+watch op_131_b
+watch op_115
+step 10000
+show_op
+step 2
+```
+
