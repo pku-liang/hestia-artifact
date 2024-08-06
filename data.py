@@ -4,7 +4,7 @@ import subprocess
 import pandas as pd
 
 cur_path = os.getcwd()
-debugger = "~/hector-debugger/target/release/hector-debugger "
+hestia = "~/hestia/target/release/hestia"
 
 def execute_cmd(cmd):
     start_time = time.time()
@@ -22,9 +22,9 @@ if not os.path.exists(cur_path+'/collection1.csv'):
         print("Evaluate", dir)
         data = {}
         data["name"] = dir
-        data["software"] = execute_cmd(debugger+"command/"+dir+"/scf.tcl")
-        data["schedule"] = execute_cmd(debugger+"command/"+dir+"/tor.tcl")
-        data["structure"] = execute_cmd(debugger+"command/"+dir+"/hec.tcl")
+        data["software"] = execute_cmd(hestia+" command/"+dir+"/scf.tcl")
+        data["schedule"] = execute_cmd(hestia+" command/"+dir+"/tor.tcl")
+        data["structure"] = execute_cmd(hestia+" command/"+dir+"/hec.tcl")
         DATA1.append(data)
     os.chdir(cur_path)
     pd.DataFrame(DATA1).to_csv("collection1.csv", index=False)
@@ -38,8 +38,8 @@ if not os.path.exists(cur_path+'/collection2.csv'):
         print("Evaluate", dir)
         data = {}
         data["name"] = dir
-        data["software"] = execute_cmd(debugger+"command/"+dir+"/scf.tcl")
-        data["structure"] = execute_cmd(debugger+"command/"+dir+"/hec.tcl")
+        data["software"] = execute_cmd(hestia+" command/"+dir+"/scf.tcl")
+        data["structure"] = execute_cmd(hestia+" command/"+dir+"/hec.tcl")
         DATA2.append(data)
     os.chdir(cur_path)
     pd.DataFrame(DATA2).to_csv("collection2.csv", index=False)
@@ -56,7 +56,7 @@ if not os.path.exists(cur_path+'/polybench.csv'):
         print("Evaluate", dir)
         data = {}
         data["name"] = dir
-        data["structure"] = execute_cmd(debugger+"hec.tcl")
+        data["structure"] = execute_cmd(hestia+" hec.tcl")
         result = os.popen("fud e --to interpreter-out L1.futil -pr interpreter.interpret -csv -q").read()
         result = result[result.find(",")+1:]
         lower_result = os.popen("fud e --to interpreter-out L1.futil -s futil.flags \"-p all -x tdcc:no-early-transitions\" -pr interpreter.interpret -csv -q").read()
