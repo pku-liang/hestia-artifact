@@ -125,7 +125,7 @@ hestia tor.tcl
 
 Run the simulation and inspect the result. You will find that the result is the same as `data/C_out.txt`
 
-After that, run the structure-level simulation. You will find that the result differs from `data/C_out.txt`
+After that, run the structure-level simulation. You will encounter a segmentation fault.
 
 ```bash
 hestia hec_wrong.tcl
