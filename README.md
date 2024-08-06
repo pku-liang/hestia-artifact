@@ -115,3 +115,30 @@ show_op
 step 2
 ```
 
+## Case 2: (LIV in Section VII-C)
+
+The work directory is `examples/case2`. First, invoke the schedule-level simulation:
+
+```bash
+hestia tor.tcl
+```
+
+Run the simulation and inspect the result. You will find that the result is the same as `data/C_out.txt`
+
+After that, run the structure-level simulation. You will find that the result differs from `data/C_out.txt`
+
+```bash
+hestia hec_wrong.tcl
+```
+
+Then, run the cosimulation between schedule and structure level.
+```bash
+hestia cosim.tcl
+```
+
+You can get the co-simulation mismatch:
+```bash
+Value Mismatch: operation "op_44" and primitive "muli_main_0" at state @s14
+```
+
+Comment the line 6 and uncomment line 7 in `cosim.tcl`, you can pass the co-simulation.
