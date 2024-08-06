@@ -17,6 +17,20 @@ git clone https://github.com/pku-liang/hestia.git
 cargo build --all --release
 ```
 
+## Error Encountered When Building Hestia
+
+If you encounter the following error:
+```bash
+Error[E0658]: #[diagnostic] attribute name space is experimental
+```
+
+You can resolve this by installing and setting the nightly version of Rust:
+
+```bash
+rustup install nightly
+rustup default nightly
+```
+
 # Cider Setup
 
 ## Install python dependencies
@@ -58,7 +72,7 @@ fud config stages.interpreter.flags " --no-verify " # the spaces are important
 Set the path of Hestia in `data.py`
 
 ```python
-debugger = "~/hector-debugger/target/release/hector-debugger "
+hestia = "~/hestia/target/release/hestia "
 ```
 
 Use the python script to run the evaluation and to generate three csv files. (Table III, Table IV, Fig 8)
