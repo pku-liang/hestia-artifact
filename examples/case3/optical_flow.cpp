@@ -145,6 +145,7 @@ void gradient_weight_y(hls::stream<pixel_t, default_depth> &gradient_x,
 					   hls::stream<pixel_t, default_depth> &filt_grad_z)
 {
 	pixel_t buf[7][MAX_WIDTH][3];
+#pragma HLS array_partition variable = buf dim = 1 complete
 
 	const pixel_t GRAD_FILTER[] = {0.0755, 0.133, 0.1869, 0.2903, 0.1869, 0.133, 0.0755};
 GRAD_WEIGHT_Y_OUTER:
@@ -321,6 +322,7 @@ void tensor_weight_y(hls::stream<outer_pixel_t, default_depth> &outer_0,
 					 hls::stream<outer_pixel_t, default_depth> &tensor_y_5)
 {
 	outer_pixel_t buf[3][MAX_WIDTH][6];
+#pragma HLS array_partition variable = buf dim = 1 complete
 
 	const pixel_t TENSOR_FILTER[] = {0.3243, 0.3513, 0.3243};
 TENSOR_WEIGHT_Y_OUTER:

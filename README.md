@@ -167,7 +167,7 @@ hestia tor.tcl
 
 You can get the fault:
 ```bash
-index out of bounds: the len is 3 but the index is 3
+index out of bounds: the len is 1024 but the index is 1024
 ```
 
 Here, we find an error in the open source implementation, which is caused by the line 44 of [Optical_flow](https://github.com/cornell-zhang/rosetta/blob/master/optical-flow/src/sdsoc/optical_flow.cpp)
